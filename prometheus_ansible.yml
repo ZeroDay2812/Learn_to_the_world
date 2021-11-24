@@ -1,0 +1,36 @@
+---
+
+  - name: initailize prometheus container using ansible 
+    hosts: testservers
+    remote_user: root
+
+    tasks:
+    - name: install pre_requiste packages 
+      yum: 
+       name: "{{item}}"
+       state: latest
+      with_items:
+        yum-utils
+        docker
+        python-docker
+
+    - name: Add docker CE repo 
+      get_url:
+       url: https://download.docker.com/linux/centos/docker-ce.repo
+       dest: /etc/yum.repos.d/docker-ce.repo
+
+    - name: Start and enable docker deamon 
+      service:
+       name: docker 
+       enabled: yes
+       state: started
+
+    - name: launch promtheus container
+      docker_container:
+       name: my_prometheus
+       image: prom/prometheus
+       restart: true
+       ports:
+        - "9090:9090"
+
+    

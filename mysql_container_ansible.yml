@@ -1,0 +1,31 @@
+---
+
+  - name: initailize mysql container using ansible 
+    hosts: testservers
+    remote_user: root
+
+    vars:
+     db_volume: db_data
+
+    tasks:
+    - name: install python-docker
+      yum:
+       name: python-docker
+       state: latest
+       
+    - name: lanch mysql database container
+      docker_container:
+       name: my_db
+       image: mysql
+       volumes:
+        - "{{ db_volume }}:/var/lib/mysql"
+       restart: true
+       env:
+        
+        MYSQL_ROOT_PASSWORD: qwe123
+        MYSQL_DATABASE: test
+        MYSQL_USER: sql_admin
+        MYSQL_PASSWORD: khue12345
+
+       ports:
+        - "33306:3306"

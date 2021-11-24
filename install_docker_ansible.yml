@@ -1,0 +1,27 @@
+---
+  - name: Install docker using ansible 
+    hosts: testserver 
+    remote_user: root
+
+    tasks:
+    - name: install pre_requiste packages 
+      yum: 
+       name: "{{item}}""
+       state: latest
+      with_items:
+        yum-utils
+    
+    - name: Add docker CE repo 
+      get_url:
+       url: https://download.docker.com/linux/centos/docker-ce.repo
+       dest: /etc/yum.repos.d/docker-ce.repo
+    - name: Install docker 
+      yum:
+       name: docker
+       state: latest
+    - name: Start and enable docker deamon 
+      service:
+       name: docker 
+       enable: yes
+       state: started
+
