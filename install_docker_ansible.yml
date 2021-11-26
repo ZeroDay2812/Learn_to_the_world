@@ -6,7 +6,7 @@
     tasks:
     - name: install pre_requiste packages 
       yum: 
-       name: "{{item}}""
+       name: "{{item}}"
        state: latest
       with_items:
         yum-utils
