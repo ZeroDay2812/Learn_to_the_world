@@ -1,9 +1,9 @@
 ---
 
-  - name: initailize prometheus container using ansible 
+  - name: initailize mysql container using ansible 
     hosts: testservers
     remote_user: root
-
+    
     tasks:
     - name: install pre_requiste packages 
       yum: 
@@ -25,12 +25,26 @@
        enabled: yes
        state: started
 
-    - name: launch promtheus container
+#    - name: Create a network container
+#      docker_network:
+#       name: mybridge
+#       connected:
+#        - my_db
+#        - my_app
+       
+    - name: launch database container
       docker_container:
-       name: my_prometheus
-       image: prom/prometheus
+       name: my_db
+       image: postgres
        restart: true
+       env:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: khue12345
+
+    - name: webapp with drupal
+      docker_container:
+       name: my_app
+       image: drupal
+       restart: true 
        ports:
-        - "9090:9090"
-    - name: copy config file prometheus
-      cmd: docker cp /tmp/prometheus/prometheus.yml /tmp/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+        - "8080:80"
