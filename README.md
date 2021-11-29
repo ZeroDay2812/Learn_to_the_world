@@ -22,12 +22,18 @@ Hiện tại Ansible có thể chạy trên bất kỳ machine nào cài đượ
 
 3. Install ansible on Control machine trên server chạy hệ điều hành CenOS 
 
-- Cài đặt repo Centos 7 EPEL 
-    # sudo yum install epel-release
-- Cài đặt Ansible sử dụng lệnh yum 
-    # sudo yum install ansible
-- Check version ansible 
-    # ansible --version
+- Cài đặt repo Centos 7 EPEL
+```      
+  # sudo yum install epel-release
+```
+- Cài đặt Ansible sử dụng lệnh yum
+```
+  # sudo yum install ansible
+```
+- Check version ansible
+```
+  # ansible --version
+```
 
 4. Demo
 
@@ -35,9 +41,9 @@ Control node: 192.168.1.203
 Managed node1: 192.168.1.204
 Managed node2: 192.168.1.205
 
-4.1. Thiết lập phiên kết nối giữa control node và managed node  
-Tạo file ssh-key trên control node sử dụng lệnh: ssh-keygen
-Copy publickey file sang managed node sử dụng lệnh: ssh-copy-id
+4.1. Thiết lập phiên kết nối giữa control node và managed node    
+Tạo file ssh-key trên control node sử dụng lệnh: ```ssh-keygen```  
+Copy publickey file sang managed node sử dụng lệnh: ```ssh-copy-id```
 
 4.2. Ansible quản lý hạ tầng tại 1 thời điểm được biết tới là inventory. Mặc đường dẫn mặc định của inventory chứa trong file /etc/ansible/hosts. Ngoài ra cũng có thể chỉ định đường đến inventory sử dụng options -i. 1 inventory có thể được định nghĩa bởi 1 file định dạng INI hoặc YAML
 
