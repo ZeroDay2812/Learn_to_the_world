@@ -1,5 +1,5 @@
-# Learn_to_the_world
-Ansible for automation
+# Ansible for automation
+
 
 I. Khái niệm 
 - Ansible là một giải pháp tự động hóa CNTT,được ứng dụng rộng rãi để tối ưu, tự động hóa các bài toán thuộc các lĩnh vực CNTT cấp phát tài nguyên cloud, quản lý cấu hình thiết bị, triển khai ứng dụng,... và một vài ứng dụng khác.
